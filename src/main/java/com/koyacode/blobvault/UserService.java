@@ -1,17 +1,21 @@
 package com.koyacode.blobvault;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.UUID;
+import org.springframework.stereotype.Service;
 
+import java.util.*;
 
+@Service
 public class UserService {
     private User user;
     private Map<UUID, User> allUsers  = new HashMap<>();
+    private final UserMapper mapper;
 
-    public User createNewUser(String name) {
-        User user = new User(name);
+    public UserService(UserMapper mapper) {
+        this.mapper = mapper;
+    }
+
+    public User createNewUser(CreateUserRequestDTO request) {
+        User user = mapper.toEntity(request);
         allUsers.put(user.getUserId(), user);
         return user;
     }
@@ -21,7 +25,10 @@ public class UserService {
 
     }
 
-    public Collection<User> getAllUsers() {
-        return allUsers.values();
+    public List<UserResponseDTO> getAllUsers() {
+        return allUsers.values()
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
     }
 }

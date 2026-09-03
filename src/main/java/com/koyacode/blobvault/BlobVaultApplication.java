@@ -9,14 +9,14 @@ public class BlobVaultApplication {
 
     public static void main(String[] args) {
 
-
+        /*
         UserService userService = new UserService();
         User user1 = userService.createNewUser("Adetola");
         User user2 = userService.createNewUser("Eniola");
         System.out.println(user1.getUserId() + " " + user1.getName());
         System.out.println(userService.getAllUsers());
         System.out.println(userService.getUserById(user2.getUserId()));
-
+        */
         ApplicationContext context =
                 SpringApplication.run(BlobVaultApplication.class, args);
 
@@ -25,6 +25,7 @@ public class BlobVaultApplication {
         bss.testConnection();
         bss.listFiles();
 
+        /*
         bss.uploadFile(
                 user2.getUserId(),
                 "AWS Certified Solutions Architect - Associate certificate.pdf"
@@ -38,7 +39,7 @@ public class BlobVaultApplication {
 
         System.out.println("User2:" + bss.getFilesForUser(user2.getUserId()));
         System.out.println("User1:" + bss.getFilesForUser(user1.getUserId()));
-
+        */
         //SpringApplication.run(BlobVaultApplication.class, args);
     }
 
